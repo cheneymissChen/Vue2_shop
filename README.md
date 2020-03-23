@@ -8,9 +8,7 @@ vue2 + vuex + vue-router + webpack + ES6/7 + axios + sass
 
 css预处理器：目前流行的css预处理主要是stylus，less，sass，个人感觉less和sass差别不大，stylus缩进式语法有点不太习惯，综上选择了sass进行样式的编写，通过预处理器可以以编程的方式书写css代码，添加变量，函数，样式继承等。
 
-后台接口：在这里使用的是慕课网提供的接口：[接口文档](https://gitee.com/imooccode/happymmallwiki/wikis/Home)
 
-跨域处理：由于使用的外部接口，前端项目运行地址与接口访问地址不同，浏览器的同源策略使得我们不得不处理跨域，因此需要对跨域进行简单处理。
 1. 开发模式下：需要在config下的index.js进行配置
 ```
 proxyTable: {
@@ -40,24 +38,8 @@ proxyTable: {
 
 订单模块：包括地址的管理，提交订单，订单列表，详情，取消订单等
 
-在这里本来想做支付模块，发现接口返回的二维码失效支付不了，因此只到支付详情这块。
 <br>
 
-后续：
-
-1. 在这里只是简单实现了基本功能，当然作为web-app，用户体验是第一位的，后续会持续的对项目进行性能优化
-2. 数据请求这块使用的axios插件，后续会用原生fecth进行实现
-
-#### 感觉不错的，反手就是一个赞👍，另外项目还要很多地方需要优化，欢迎大家issue！
-
-# 项目演示
-
-[项目演示](http://www.rosenwang.xyz:8080/#/home)
-
-![](https://github.com/Rosen97/web-shop/blob/master/src/assets/user.gif)
-![](https://github.com/Rosen97/web-shop/blob/master/src/assets/user2.gif)
-![](https://github.com/Rosen97/web-shop/blob/master/src/assets/product.gif)
-![](https://github.com/Rosen97/web-shop/blob/master/src/assets/order.gif)
 
 # 项目运行
 

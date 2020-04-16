@@ -55,6 +55,7 @@
         bottom: 0;
         margin: 0 auto;
         -webkit-overflow-scrolling: touch;
+        background: rgb(246,245,248);
     }
     /*切换动画*/
     .slide-right-enter-active,

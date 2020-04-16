@@ -14,13 +14,13 @@
                     <i class="iconfont icon-delete" @click="deleteHistory"></i>
                 </p>
                 <div>
-                    <span v-for="item in searchHistory" @click="selectTag(item)">{{item}}</span>
+                    <span v-for="(item,index) in searchHistory" @click="selectTag(item)" :key="index">{{item}}</span>
                 </div>
             </div>
             <div class="search-list hot-list">
                 <p>热门搜索</p>
                 <div>
-                    <span v-for="item in hotData" :class="{'hot' : item.hot}" @click="selectTag(item.title)">{{item.title}}</span>
+                    <span v-for="(item,index) in hotData" :class="{'hot' : item.hot}" @click="selectTag(item.title)" :key="index">{{item.title}}</span>
                 </div>
             </div>
         </div>

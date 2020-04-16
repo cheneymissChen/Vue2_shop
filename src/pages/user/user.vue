@@ -2,7 +2,7 @@
     <div class="user-box">
         <header class="user-head">
             <i class="iconfont icon-left" @click="goBack"></i>
-            <span>我的MMall</span>
+            <span>个人中心</span>
             <i class="iconfont icon-More"></i>
         </header>
         <section class="user-page">
@@ -55,7 +55,7 @@
                 </div>
                 <p class="recommend-title">为你推荐</p>
                 <div class="recommend-list">
-                    <div class="recommend-item" v-for="(item,index) in recommendList" @click="productDetail(index)">
+                    <div class="recommend-item" v-for="(item,index) in recommendList" @click="productDetail(index)" :key="index">
                         <img :src="item.imageHost+item.mainImage" v-if="item.imageHost && item.mainImage"/>
                         <img src="../../assets/product_default.jpg" v-else/>
                         <p>{{item.name}}</p>

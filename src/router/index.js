@@ -10,6 +10,7 @@ const productDetail = r => require.ensure([], () => r(require('@/pages/product-d
 const user = r => require.ensure([], () => r(require('@/pages/user/user')), 'user')
 const profile = r => require.ensure([], () => r(require('@/pages/profile/profile')), 'profile')
 const profileProduct = r => require.ensure([], () => r(require('@/pages/profile-product/profile-product')), 'profile-product')
+//销售录入合同登录
 const login = r => require.ensure([], () => r(require('@/pages/login/login')), 'login')
 const register = r => require.ensure([], () => r(require('@/pages/register/register')), 'register')
 const forgetPassword = r => require.ensure([], () => r(require('@/pages/forget-password/forget-password')), 'forget-password')
@@ -22,6 +23,18 @@ const orderDetail = r => require.ensure([], () => r(require('@/pages/order-detai
 const payment = r => require.ensure([], () => r(require('@/pages/payment/payment')), 'payment')
 const shipping = r => require.ensure([], () => r(require('@/pages/shipping/shipping')), 'shipping')
 const frame = r => require.ensure([], () => r(require('@/components/common/frame')), 'frame')
+//添加合同
+const addpact = r => require.ensure([], () => r(require('@/pages/add-pact/add-pact')), 'add-pact')
+//合同详情
+const contractdetails = r => require.ensure([], () => r(require('@/pages/contract-details/contract-details')), 'contract-details')
+//个人中心
+const mycenter = r => require.ensure([], () => r(require('@/pages/mycenter/mycenter')), 'mycenter')
+//业绩说明
+const percertificate = r => require.ensure([], () => r(require('@/pages/percertificate/percertificate')), 'percertificate')
+// 功能建设中
+const construction = r => require.ensure([], () => r(require('@/pages/construction/construction')), 'construction')
+//我的门店
+const mystore = r => require.ensure([], () => r(require('@/pages/mystore/mystore')), 'mystore')
 
 
 Vue.use(Router)
@@ -68,7 +81,15 @@ export default new Router({
                 index: 1
             },
             component: user
-        }, {
+        }, 
+        {
+            path: '/mycenter',
+            meta: {
+                index: 3
+            },
+            component: mycenter
+        },
+        {
             path: '/profile',
             meta: {
                 index: 2
@@ -111,6 +132,43 @@ export default new Router({
             },
             component: updateInfo
         }, {
+            path: '/addpact',
+            meta: {
+                index: 3
+            },
+            component: addpact
+        },
+        {
+            path: '/contractdetails',
+            meta: {
+                index: 3
+            },
+            component: contractdetails
+        },
+        {
+            path: '/percertificate',
+            meta: {
+                index: 4
+            },
+            component: percertificate
+        },
+        {
+            path: '/construction',
+            meta: {
+                index: 4
+            },
+            component: construction
+        },
+        //mystore
+        {
+            path: '/mystore',
+            meta: {
+                index: 4
+            },
+            component: mystore
+        },
+
+        {
             path: '/shopcart',
             meta: {
                 index: 1

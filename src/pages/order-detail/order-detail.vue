@@ -21,7 +21,7 @@
             <div>配送方式：<span>普通快递</span></div>
         </section>
         <section class="product-list">
-            <div class="product-item" v-for="item in orderInfo.orderItemVoList">
+            <div class="product-item" v-for="(item,index) in orderInfo.orderItemVoList" :key="index">
                 <img :src="orderInfo.imageHost+item.productImage" >
                 <div>
                     <p>{{item.productName}}</p>

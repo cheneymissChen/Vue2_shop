@@ -33,7 +33,7 @@
     <section class="product-list" v-show="!isLoading">
       <refresh :on-refresh="onRefresh" :on-infinite="onInfinite" style="top: 220px;">
         <div>
-          <div class="product-item" v-for="(item,index) in productList" @click="productDetail(index)">
+          <div class="product-item" v-for="(item,index) in productList" @click="productDetail(index)" :key="index">
             <img :src="item.imageHost+item.mainImage" v-if="item.imageHost && item.mainImage">
             <img src="../../assets/product_default.jpg" v-else/>
             <div class="product-info">

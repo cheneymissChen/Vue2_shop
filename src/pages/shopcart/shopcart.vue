@@ -9,8 +9,8 @@
         <section v-show="!isLoading">
           <section class="shopcart-page">
             <div class="shopcart-list">
-              <div class="shopcart-item" v-for="item in cartProductVoList" data-type="0"
-                   @click="showDetail($event,item.productId)">
+              <div class="shopcart-item" v-for="(item,index) in cartProductVoList" data-type="0"
+                   @click="showDetail($event,item.productId)" :key="index">
                 <div class="shopcart-item-box" @touchstart.capture="touchStart" @touchend.capture="touchEnd">
                   <div class="shopcart-item-select">
                     <i class="iconfont icon-duigou" data-selected="1"
@@ -63,7 +63,7 @@
             <div class="shopcart-recommend">
               <div class="recommend-list">
                 <div class="recommend-item" v-for="(item,index) in recommendList"
-                     @click="productDetail($event,index)">
+                     @click="productDetail($event,index)" :key="index">
                   <img :src="item.imageHost+item.mainImage" v-if="item.imageHost && item.mainImage"/>
                   <img src="../../assets/product_default.jpg" v-else/>
                   <p>{{item.name}}</p>

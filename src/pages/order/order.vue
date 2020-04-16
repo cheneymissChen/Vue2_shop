@@ -26,7 +26,7 @@
                 <img src="../../assets/shipping-bottom.png" />
             </div>
             <div class="order-list">
-                <div class="order-item" v-for="item in orderList">
+                <div class="order-item" v-for="(item,index) in orderList" :key="index">
                     <img :src="imageHost+item.productMainImage">
                     <div class="product-info">
                         <p class="name">{{item.productName}}</p>

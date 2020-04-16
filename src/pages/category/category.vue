@@ -1,4 +1,5 @@
 <template>
+<!-- transition-group -->
     <div>
         <div>
             <header class="category-header wrap">
@@ -14,27 +15,29 @@
                 <list-scroll :scroll-data="categoryData" class="nav-side-wrapper">
                     <ul class="nav-side">
                         <li v-for="(item,index) in categoryData" v-text="item.name"
-                            :class="{'active' : currentIndex === index}" @click="selectMenu(index)"></li>
+                            :class="{'active' : currentIndex === index}" @click="selectMenu(index)" :key="index"></li>
                     </ul>
                 </list-scroll>
                 <div class="search-content">
                     <list-scroll :scroll-data="categoryData" >
                         <div class="swiper-container">
                             <div class="swiper-wrapper">
-                                <transition name="fade-out">
+                                <!-- <transition name="fade-out"> -->
+                                      <transition-group name="fade-out">
                                     <div class="swiper-slide" v-for="(category,index) in categoryData"
-                                         v-if="currentIndex === index">
+                                         v-show="currentIndex === index" :key="index">
                                         <img class="category-main-img" :src="category.mainImgUrl"
                                                                         v-if="category.mainImgUrl"/>
-                                        <div class="category-list" v-for="products in category.list">
+                                        <div class="category-list" v-for="(products,index) in category.list" :key="index">
                                             <p class="catogory-title">{{products.title}}</p>
-                                            <div class="product-item" v-for="product in products.productList" @click="selectProduct(product.title)">
+                                            <div class="product-item" v-for="(product,index) in products.productList" @click="selectProduct(product.title)" :key="index">
                                                 <img :src="product.imgUrl" class="product-img"/>
                                                 <p v-text="product.title" class="product-title"></p>
                                             </div>
                                         </div>
                                     </div>
-                                </transition>
+                                </transition-group>
+                                 <!-- </transition> -->
                             </div>
                         </div>
                     </list-scroll>

@@ -8,6 +8,11 @@ import 'lib-flexible'   //rem布局
 import http from './service/ajax'
 import fastclick from 'fastclick'
 import VueScroller from 'vue-scroller'
+import 'amfe-flexible/index'
+import Vant from 'vant';//ui组件
+import 'vant/lib/index.css';
+
+Vue.use(Vant);
 
 Vue.use(VueScroller)
 fastclick.attach(document.body) //解决移动端点击300ms延时

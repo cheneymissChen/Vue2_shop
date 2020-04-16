@@ -15,20 +15,20 @@
         <nav-bar></nav-bar>
         <slider :imgUrl="headList"></slider>
         <section class="category-list">
-            <div v-for="item in categoryList" @click="selectCategory(item.categoryId)">
+            <div v-for="(item,index) in categoryList" @click="selectCategory(item.categoryId)" :key="index">
                 <img :src="item.imgUrl">
                 <span>{{item.name}}</span>
             </div>
         </section>
         <section class="floor-list">
-            <div class="floor-wrap" v-for="floor in floorList">
+            <div class="floor-wrap" v-for="(floor,index) in floorList" :key="index">
                 <img class="floor-head" :src="floor.headUrl">
                 <div class="floor-content">
-                    <div class="floor-category" v-for="category in floor.list">
+                    <div class="floor-category" v-for="(category,index) in floor.list" :key="index">
                         <p>{{category.title}}</p>
                         <p>{{category.desc}}</p>
                         <div class="floor-products">
-                            <img :src="product.imgUrl" v-for="product in category.products" @click="selectCategory(product.categoryId)">
+                            <img :src="product.imgUrl" v-for="(product,index) in category.products" @click="selectCategory(product.categoryId)"  :key="index">
                         </div>
                     </div>
                 </div>

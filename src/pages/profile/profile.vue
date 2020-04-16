@@ -34,7 +34,7 @@
                     <span>意见反馈</span>
                 </div>
                 <div class="client">
-                    <i>MMall</i>
+                    <i>小站</i>
                     <span>客户端</span>
                 </div>
                 <div class="logout" @click="userLogout">
@@ -42,7 +42,7 @@
                     <span>退出登录</span>
                 </div>
             </div>
-            <p class="mmall">MMall</p>
+            <p class="mmall">饰家小站</p>
         </section>
     </div>
 </template>

@@ -8,7 +8,7 @@
         <section class="product-wrap">
             <list-scroll :scroll-data="productList" v-if="productList.length > 0">
                 <div class="product-list">
-                    <div class="product-item" v-for="(item,index) in productList" @click="productDetail(index)">
+                    <div class="product-item" v-for="(item,index) in productList" @click="productDetail(index)" :key="index">
                         <img :src="item.imageHost + item.mainImage">
                         <div class="product-info">
                             <span class="name">{{item.name}}</span>

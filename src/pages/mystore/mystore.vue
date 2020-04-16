@@ -1,37 +1,33 @@
 <template>
-    <div class="order-wrap">
-        <header class="user-head">
+    <div class="store-wrap">
+        <header class="my-head">
             <i class="iconfont icon-left" @click="goBack"></i>
-            <span>订单列表</span>
+            <span>我的门店</span>
             <i class="iconfont icon-More"></i>
         </header>
-        <section class="order-search">
-            <div>
-                <i class="iconfont icon-search"></i>
-                <input placeholder="商品名称/商品编号/订单号" />
-            </div>
-        </section>
+      
         <section class="order-tag">
-            <span :class="{'active' : orderType===1}" data-type="1" @click="selectTag">所有订单</span>
-            <span :class="{'active' : orderType===2}" data-type="2" @click="selectTag">待付款</span>
-            <span :class="{'active' : orderType===3}" data-type="3" @click="selectTag">待收货</span>
-            <span :class="{'active' : orderType===4}" data-type="4" @click="selectTag">已完成</span>
+            <span :class="{'active' : orderType===1}" data-type="1" @click="selectTag">审批通过</span>
+            <span :class="{'active' : orderType===2}" data-type="2" @click="selectTag">审批未通过</span>
+            <span :class="{'active' : orderType===3}" data-type="3" @click="selectTag">审核中</span>
+            <span :class="{'active' : orderType===4}" data-type="4" @click="selectTag">草稿箱</span>
         </section>
       <loading v-show="isLoading"></loading>
         <section>
             <div class="order-list" v-show="!isLoading">
-                <!-- <div class="order-item" v-for="order in orderList" :data-orderNo="order.orderNo" @click="viewDetail" > -->
                          <div class="order-item" v-for="(order,index) in orderList" :data-orderNo="order.orderNo" @click="viewDetail" :key="index" >
-                    <p class="order-num">订单号：<span>{{order.orderNo}}</span></p>
+                    <p class="order-num">饰家小站上海1号店</p>
                     <div class="status">
                         <div>
-                            <i>状态：<b>{{order.statusDesc}}</b></i>
-                            <i>总价：<b>￥{{order.payment}}</b></i>
+                            <i>瑾哥哥</i>
+                            <i>入驻时间：<b>2020-02-02</b></i>
                         </div>
-                        <span class="order-payment" v-show="order.status === 10" @click="goPayment(order.orderNo)">去支付</span>
+                        <div>
+                            <i>12345678901</i>
+                            <i>签约金额：<b>30000.00</b></i>
+                        </div>
                     </div>
-                    <div class="product-list">
-                        <!-- <div class="product-item" v-for="product in order.orderItemVoList"> -->
+                    <!-- <div class="product-list">
                         <div class="product-item" v-for="(product,index) in order.orderItemVoList" :key="index">
 
                             <img :src="order.imageHost+product.productImage" />
@@ -40,7 +36,7 @@
                                 <span>x{{product.quantity}}</span>
                             </div>
                         </div>
-                    </div>
+                    </div> -->
                 </div>
             </div>
             <div class="order-empty" v-show="orderList.length === 0">{{emptyMsg}}</div>
@@ -81,9 +77,7 @@
                     pageSize = 20
                 orderList(pageSize,pageNum).then((res)=>{
                     console.log(res)
-                    // if(!res.data.list.length){
-                    //     return
-                    // }
+                 
                     this.initOrderList(res.data.list)
                 })
             },
@@ -91,30 +85,29 @@
                 switch(this.orderType){
                     case 1:
                         this.orderList = orderList
-                        this.emptyMsg = '你暂时没有订单!'
+                        this.emptyMsg = '你的门店暂时没有审核通过!'
                         break
                     case 2:
-                        orderList.forEach((order)=>{  //待付款
+                        orderList.forEach((order)=>{ 
                             if(order.status === 10){
                                 this.orderList.push(order)
                             }
                         })
-                        this.emptyMsg = '你暂时没有要付款的订单!'
+                        this.emptyMsg = '你的门店暂时没有审核未通过'
                         break
                     case 3:
                         this.orderList = []
-                        this.emptyMsg = '你暂时没有待收货的订单!'
+                        this.emptyMsg = '你的门店没有审核中!'
                         break
                     case 4:
                         this.orderList = []
-                        this.emptyMsg = '你暂时没有已完成的订单!'
+                        this.emptyMsg = '你的门店暂时没有草稿!'
                         break
                 }
             },
             selectTag(e){
                 let $type = parseInt(e.currentTarget.getAttribute('data-type'))
                 this.orderType = $type
-                this.$router.replace('./order-list?orderType='+$type)
                 this.orderList = []
                 this.emptyMsg = ''
                 this.getOrderList()
@@ -125,10 +118,7 @@
                 }
                 this.$router.push('./order-detail?orderNo='+e.currentTarget.getAttribute('data-orderNo'))
             },
-            //去支付
-            goPayment(orderNo){
-                this.$router.push('./payment?orderNo='+orderNo)
-            },
+           
             goBack(){
                 this.$router.push('./user')
             }
@@ -141,9 +131,9 @@
 
 <style lang="scss" type="text/scss" scoped>
     @import '../../common/style/mixin';
-    .order-wrap{
+    .store-wrap{
         background: #f7f7f7;
-        .user-head{
+        .my-head{
             @include fj;
             width: 100%;
             height: 88px;
@@ -157,28 +147,6 @@
                 font-size: 44px;
             }
         }
-        .order-search{
-            width: 100%;
-            padding: 15px 30px;
-            @include boxSizing;
-            div{
-                width: 100%;
-                height: 60px;
-                line-height: 60px;
-                background: #fff;
-                @include borderRadius(40px);
-                .iconfont{
-                    padding: 0 20px 0 30px;
-                    font-size: 30px;
-                }
-                input{
-                    width: 80%;
-                    height: 100%;
-                    line-height: 60px;
-                    font-size: 30px;
-                }
-            }
-        }
         .order-tag{
             display: flex;
             justify-content: space-around;
@@ -189,30 +157,31 @@
                 line-height: 88px;
                 font-size: 30px;
                 &.active{
-                    color: $red;
-                    border-bottom: 4px solid $red;
+                    color: #00DBAC;
+                    border-bottom: 6px solid #00DBAC;
                 }
             }
         }
         .order-list{
             width: 100%;
-            background: #eee;
+         background: #f7f7f7;
             .order-item{
-                width: 100%;
-                margin-top: 30px;
-                padding: 20px;
-                @include boxSizing;
-                background: #fff;
+                   width: 90%;
+                   box-sizing: border-box;
+                   background: #fff;
+                   margin: .4rem auto;
                 .order-num{
-                    padding: 20px 0;
+                    padding: 20px 16px;
                     font-size: 30px;
-                    color: #999;
-                    border-bottom: 1px solid #dcdcdc;
+                    color: #ffffff;
+                    background:rgba(0,219,172,1);
+                    border-radius:10px 10px 0px 0px;
                     span{
                         color: #000;
                     }
                 }
                 .status{
+                    background: #ffffff;
                     @include fj;
                     @extend .order-num;
                     div{
@@ -221,10 +190,12 @@
                         i{
                             font-style: normal;
                             padding-bottom: 10px;
+                            color: #333333;
                             &:last-child{
                                 b{
                                     font-weight: normal;
                                     color: #000;
+                                  
                                 }
                             }
                             b{

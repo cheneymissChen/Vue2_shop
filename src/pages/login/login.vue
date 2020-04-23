@@ -1,18 +1,16 @@
 <template>
     <div>
-        <img src="../../assets/logo.png" class="logo">
-       
+        <img src="../../assets/login_bg.png" class="login">
+        <div class="register" @click="handrefister">注册</div>
         <section class="page">
             <div class="login-page">
                 <div class="login-wrap">
                     <div class="login-text">
-                         <img src="../../assets/iphone.png" class="iphone">
                         <input @mouseenter="focusText"
                                @mouseleave="blurText" v-model="username" type="text" class="login-username" placeholder="用户名/邮箱/已验证手机" />
                         <i class="iconfont icon-close" data-close="username" v-show="!usernameClose" @click="clearText"></i>
                     </div>
                     <div class="login-text">
-                         <img src="../../assets/code.png" class="code">
                         <input @mouseenter="focusText"
                                @mouseleave="blurText" ref="passwordText" v-model="password" type="password" class="login-password" placeholder="请输入密码"  />
                         <div>
@@ -28,29 +26,23 @@
                 <div class="quick-nav">
                     <!-- <router-link tag="span" class="register-button" to="./register">快速注册</router-link> -->
                 </div>
-                <!-- <div class="other-login">
+                 <div class="other-login">
                     <div class="other-head">
                         <i></i>
-                        <span>其它登录方式</span>
+                        <span>第三方账号登录</span>
                         <i></i>
-                    </div> -->
-                    <!-- <div class="other-con">
+                    </div> 
+                    <div class="other-con">
+                        
                         <div class="login-icon">
-                            <i class="iconfont icon-tubiao215"></i>
-                            <span>qq</span>
+                                <img src="../../assets/wechat.png" class="wechat">
                         </div>
-                        <div class="login-icon">
-                            <i class="iconfont icon-weixin1"></i>
-                            <span>微信</span>
-                        </div>
-                    </div> -->
-                    <!-- <a>登录即代表您已同意<a>MMall隐私政策</a></p> -->
-                <!-- </div> -->
+                    </div> 
+                   
+                </div> 
             </div>
         </section>
-        <footer class="login_bg">
-        <img src="../../assets/login_bg.png" style="width:100%;"/>
-        </footer>
+     
     </div>
 </template>
 
@@ -102,8 +94,12 @@
                 }
                 userLogin(this.username,this.password).then((res)=>{
                         this.errMsg = ''
-                        this.$router.push('./user')
+                        this.$router.push('./center')
                 })
+            },
+            //点击注册跳转到注册页面
+            handrefister(){
+              this.$router.push("./register")
             }
         },
         components: {
@@ -115,12 +111,24 @@
 
 <style lang="scss" type="text/scss" scoped>
     @import '../../common/style/mixin';
-    .logo{
-       width: 150px;
-       height: 150px;
-       margin: 20% 43% 10% 43%;
-    
+    .login{
+          width: auto;  
+          height: auto;  
+         max-width: 100%;  
+         max-height: 100%; 
+         position: relative;
+        
     }
+     .register{
+            position:absolute;
+            top:60px;
+            right: 60px;
+            color: #ffffff;
+            font-size:30px;
+            font-weight: bold;
+            font-family:PingFang SC;
+         }
+
     .login-page{
      
         margin-top: 60px;
@@ -139,6 +147,7 @@
             .login-text{
                 @include fj;
                 width: 90%;
+                margin: 0 auto;
                 height: 60px;
                 line-height: 60px;
                 padding: 20px 0;
@@ -167,6 +176,7 @@
                 span{
                     // padding-left: 20px;
                     font-size: 30px;
+                  
                 }
                 div{
                     display: flex;
@@ -188,10 +198,11 @@
             line-height: 100px;
             color: #fff;
             font-size: 32px;
-            background: rgba(0, 219, 172, 0.5);
+            background:rgba(255,157,17,1);
+             border-radius:36px;
             @include borderRadius(60px);
             &.active{
-               background: rgb(0, 219, 172, );
+              background:rgba(255,157,17,1);
             }
         }
         .quick-nav{
@@ -205,7 +216,6 @@
         }
         .other-login{
             width: 100%;
-            margin-top: 100px;
             .other-head{
                 @include fj;
                 i{
@@ -230,7 +240,7 @@
                     display: flex;
                     flex-direction: column;
                     width: 96px;
-                    margin: 0 30px;
+                    margin: 0 auto;
                     text-align: center;
                     .iconfont{
                         width: 100%;
@@ -246,28 +256,17 @@
                             background: #E6F8E6;
                         }
                     }
-                    span{
-                        padding-top: 20px;
-                        color: #999;
-                    }
+                   
                 }
             }
-            p{
-                margin-top: 20px;
-                width: 100%;
-                text-align: center;
-                color: #999;
-                a{
-                    color: #409eff;
-                }
-            }
+         
         }
     }
-    .login_bg{
-        position: fixed;
-        left: 0;
-        bottom: 0;
-        width: 100%;
+    .wechat{
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
     }
+   
   
 </style>

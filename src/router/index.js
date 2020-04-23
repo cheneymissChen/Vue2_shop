@@ -27,7 +27,7 @@ const frame = r => require.ensure([], () => r(require('@/components/common/frame
 const addpact = r => require.ensure([], () => r(require('@/pages/add-pact/add-pact')), 'add-pact')
 //合同详情
 const contractdetails = r => require.ensure([], () => r(require('@/pages/contract-details/contract-details')), 'contract-details')
-//个人中心
+//销售录入合同个人中心
 const mycenter = r => require.ensure([], () => r(require('@/pages/mycenter/mycenter')), 'mycenter')
 //业绩说明
 const percertificate = r => require.ensure([], () => r(require('@/pages/percertificate/percertificate')), 'percertificate')
@@ -35,7 +35,8 @@ const percertificate = r => require.ensure([], () => r(require('@/pages/percerti
 const construction = r => require.ensure([], () => r(require('@/pages/construction/construction')), 'construction')
 //我的门店
 const mystore = r => require.ensure([], () => r(require('@/pages/mystore/mystore')), 'mystore')
-
+//C端个人中心
+const center = r => require.ensure([], () => r(require('@/pages/center/center')), 'center')
 
 Vue.use(Router)
 
@@ -95,7 +96,16 @@ export default new Router({
                 index: 2
             },
             component: profile
-        }, {
+        },
+        
+        {
+            path: '/center',
+            meta: {
+                index: 2
+            },
+            component: center
+        },
+        {
             path: '/profile-product',
             meta: {
                 index: 3

@@ -9,6 +9,9 @@
             <div class="user-info">
                 <div class="info">
                     <img src="//img11.360buyimg.com/jdphoto/s120x122_jfs/t5683/191/7076936752/5123/834e5571/596dd62bN7a8affc5.png"/>
+                    <!-- vue上传头像 -->
+                    <!-- <van-uploader v-model="fileList"  :max-count="1" round="false" preview-size="80px"  style=" border-radius: 50%;" /> -->
+                     
                     <div>
                         <p>{{userInfo.username}}</p>
                         <span class="name">用户名：{{userInfo.username}}</span>
@@ -82,7 +85,8 @@
                 recommendList: [],
                 followCount: 0,
                 footCount: 0,
-                isLoading: true
+                isLoading: true,
+                fileList: [],
             }
         },
         computed: {
@@ -177,10 +181,42 @@
                 height: 100%;
                 padding: 50px 30px;
                 @include boxSizing;
-                img {
-                    width: 120px;
-                    height: 120px;
-                }
+            /deep/ .van-uploader__upload {
+                 position: relative;
+                 display: -webkit-box;
+                 display: -webkit-flex;
+                 display: flex;
+                -webkit-box-orient: vertical;
+                -webkit-box-direction: normal;
+                -webkit-flex-direction: column;
+                 flex-direction: column;
+                -webkit-box-align: center;
+                 -webkit-align-items: center;
+                 align-items: center;
+                 -webkit-box-pack: center;
+                -webkit-justify-content: center;
+                 justify-content: center;
+                 box-sizing: border-box;
+                  width: 80px;
+                 height: 80px;
+                 background-color: #f7f8fa;
+                 border-radius: 50%;
+    }
+         /deep/ .van-icon {
+               position: relative;
+               display: inline-block;
+               font: normal normal normal 0.186667rem/1 vant-icon;
+               font-size: inherit;
+              text-rendering: auto;
+             -webkit-font-smoothing: antialiased;
+              display: none;
+      }
+      /deep/ .van-image__error, .van-image__img, .van-image__loading {
+               display: block;
+               width: 100%;
+               height: 100%;
+               border-radius: 50%;
+        }
                 div {
                     display: flex;
                     flex-direction: column;

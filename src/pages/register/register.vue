@@ -1,6 +1,8 @@
 <template>
     <div>
-        <m-header :mTitle="'MMall注册'"></m-header>
+        <!-- <m-header :mTitle="'注册'"></m-header> -->
+            <img src="../../assets/register_bg.png" class="register_bg">
+            <div class="register" >注册</div>
         <section class="page">
             <div class="register-page">
                 <div class="register-wrap">
@@ -14,11 +16,11 @@
                                @mouseleave="blurText" v-model="password" type="password" class="register-password" placeholder="请输入密码"  />
                         <i class="iconfont icon-close" data-close="password" v-show="!passwordClose" @click="clearText"></i>
                     </div>
-                    <div class="register-text">
+                    <!-- <div class="register-text">
                         <input @mouseenter="focusText"
                                @mouseleave="blurText" v-model="email" type="text" class="register-email" placeholder="请输入邮箱"  />
                         <i class="iconfont icon-close" data-close="email" v-show="!emailClose" @click="clearText"></i>
-                    </div>
+                    </div> -->
                     <div class="register-text">
                         <input @mouseenter="focusText"
                                @mouseleave="blurText" v-model="phone" type="text" class="register-phone" placeholder="请输入手机号"  />
@@ -52,7 +54,7 @@
                     </div>
                     <div class="register-error">{{errMsg}}</div>
                     <button class="register-button next" @click="registerSubmit"
-                            :class="{'active' : removeSpace(question)&&removeSpace(answer)}">立 即 注 册</button>
+                            :class="{'active' : removeSpace(question)&&removeSpace(answer)}">立即注册</button>
                 </div>
             </transition>
         </section>
@@ -99,9 +101,9 @@
                     case 'register-password':
                         this.passwordClose = boolean
                         break
-                    case 'register-email':
-                        this.emailClose = boolean
-                        break
+                    // case 'register-email':
+                    //     this.emailClose = boolean
+                    //     break
                     case 'register-phone':
                         this.phoneClose = boolean
                         break
@@ -121,14 +123,14 @@
             //下一步
             registerNext(){
                 if(!formValidate(this.username,'require') || !formValidate(this.password,'require')
-                    || !formValidate(this.email,'require') || !formValidate(this.phone,'require')){
+                     || !formValidate(this.phone,'require')){
                     this.errMsg = '请将表格填写完整'
                     return
                 }
-                if(!formValidate(this.email,'email')){
-                    this.errMsg = '邮箱格式不正确'
-                    return
-                }
+                // if(!formValidate(this.email,'email')){
+                //     this.errMsg = '邮箱格式不正确'
+                //     return
+                // }
                 if(!formValidate(this.phone,'phone')){
                     this.errMsg = '手机号格式不正确'
                     return
@@ -163,15 +165,26 @@
             }
         },
         components: {
-            mHeader
+            // mHeader
         }
     }
 </script>
 
 <style lang="scss" type="text/scss" scoped>
     @import '../../common/style/mixin';
+    .register_bg{
+        position: relative;
+    }
+    .register{
+         position: absolute;
+         left: 10%;
+         top:10%;
+         color: #ffffff;
+         font-size:76px;
+         }
     .register-page{
         margin-top: 60px;
+        padding: 0 30px;
         .register-wrap{
             width: 100%;
             .register-text{
@@ -218,16 +231,18 @@
         font-size: 26px;
     }
     .register-button{
-        width: 100%;
+        width: 90%;
+        margin-left: 5%;
         height: 100px;
         text-align: center;
         line-height: 100px;
         color: #fff;
         font-size: 32px;
-        background: rgba(246,53,21,.5);
+        background: #ff9d11;
+        font-weight: bold;
         @include borderRadius(60px);
         &.active{
-            background: rgb(246,53,21)
+           background: #ff9d11;
         }
     }
     .set-security{
@@ -236,7 +251,7 @@
         top: 0;
         width: 100%;
         height: 100%;
-        padding: 0 30px;
+        
         z-index: 100;
         background: #fff;
         @include boxSizing;
@@ -244,14 +259,17 @@
             font-size: 30px;
             color: #999;
             padding-top: 30px;
+            padding-left: 30px;
         }
         .set-security-head{
             position: relative;
             width: 100%;
-            height: 88px;
+            height: 100px;
             text-align: center;
             line-height: 88px;
             font-size: 34px;
+            border-bottom: 2px #ededed solid;
+            padding: 0 30px;
             @include boxSizing;
             .iconfont {
                 position: absolute;

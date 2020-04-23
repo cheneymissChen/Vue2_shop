@@ -5,7 +5,7 @@
             <span>收货地址</span>
         </div>
         <ul class="user-shipping-list">
-            <li class="user-shipping-item" v-for="(item,index) in shippingList">
+            <li class="user-shipping-item" v-for="(item,index) in shippingList" :key="index">
                 <div class="shipping-top">
                     <div>
                         <span v-text="item.receiverName"></span>
@@ -113,7 +113,7 @@
                             <div class="provinceList">
                                 <span v-for="(item,index) in areaData"
                                       :class="{'active' : provinceIndex === index}"
-                                      @click="selectProvince(index)">
+                                      @click="selectProvince(index)" :key="index">
                                     <i class="iconfont icon-right" v-if="provinceIndex === index"></i>
                                     {{item.value}}
                                 </span>
@@ -125,7 +125,7 @@
                             <div class="cityList">
                                 <span v-for="(item,index) in cityList"
                                       :class="{'active' : cityIndex === index}"
-                                      @click="selectCity(index)">
+                                      @click="selectCity(index)" :key="index">
                                     <i class="iconfont icon-right" v-if="cityIndex === index"></i>
                                     {{item.value}}
                                 </span>
@@ -137,7 +137,7 @@
                             <div class=" areaList">
                                 <span v-for="(item,index) in areaList"
                                       :class="{'active' : areaIndex === index}"
-                                      @click="selectArea(index)">
+                                      @click="selectArea(index)" :key="index">
                                     <i class="iconfont icon-right" v-if="areaIndex === index"></i>
                                     {{item.value}}
                                 </span>

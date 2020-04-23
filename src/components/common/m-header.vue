@@ -28,11 +28,14 @@
     header {
         position: relative;
         width: 100%;
-        height: 88px;
+        height: 120px;
+        line-height: 120px;
         text-align: center;
-        line-height: 88px;
         padding: 0 20px;
         font-size: 34px;
+        border-bottom:3px #ededed solid;
+        font-family:PingFang SC;
+        font-weight: bold;
         @include boxSizing;
         .iconfont {
             position: absolute;

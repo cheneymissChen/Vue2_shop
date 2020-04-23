@@ -56,13 +56,15 @@
                 orderList: [], //所有订单
                 orderType: 1,  //1-全部  2-待付款  3-待收货  4-已完成  5-售后
                 emptyMsg: '',
-                isLoading: true
+                isLoading: true,
+                
             }
         },
         created() {
             let $orderType = getUrlKey('orderType')
             this.orderType = parseInt($orderType)
             this.getOrderList()
+         
         },
       mounted(){
           this.$nextTick(()=>{
